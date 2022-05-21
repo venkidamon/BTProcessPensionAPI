@@ -35,7 +35,9 @@ namespace ProcessPension
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(options =>
+            services.AddSwaggerGen();
+            services.AddCors();
+            /*services.AddSwaggerGen(options =>
             {
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {
@@ -60,7 +62,7 @@ namespace ProcessPension
                         new string[] {}
                     }
                 });
-            });
+            });*/
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -86,11 +88,16 @@ namespace ProcessPension
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BTPROCESSPENSION API v1");
+
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApplication1 v1"));
+                
             }
 
             app.UseHttpsRedirection();
