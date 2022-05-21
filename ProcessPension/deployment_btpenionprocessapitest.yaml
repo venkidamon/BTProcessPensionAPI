@@ -30,5 +30,5 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    selector: 
-      app: BTProcessPensionAPI
+  selector: 
+    app: BTProcessPensionAPI
