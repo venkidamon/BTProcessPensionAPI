@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: btpensionprocessapi-deployment
+  name: btprocesspensionapi-deployment
   labels:
-    app: BTPensionProcessAPI
+    app: BTProcessPensionAPI
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: BTPensionProcessAPI
+      app: BTProcessPensionAPI
   template:
     metadata:
       labels:
-        app: BTPensionProcessAPI
+        app: BTProcessPensionAPI
     spec:
       containers:
-      - name: btpensionprocessapi
+      - name: btprocesspensionapi
         image: btprojcr.azurecr.io/btprocesspensionimage:latest
         ports:
         - containerPort: 8080
@@ -31,4 +31,4 @@ spec:
   ports:
   - port: 80
     selector: 
-      app: BTPensionProcessAPI
+      app: BTProcessPensionAPI
